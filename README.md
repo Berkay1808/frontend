@@ -1,6 +1,6 @@
 # Quattro - KPN App
 
-The Quattro - KPN App is an application designed to track KPN's carbon footprint based on employee travel behavior. Using modern web technologies, such as Vite, Lit Elements, Material Design, and NPM, we developed an efficient and user-friendly app to measure and improve this important aspect of sustainability.
+The Quattro -  KPN App is an application designed to track KPN's carbon footprint based on employee travel behavior. Using modern web technologies, such as Vite, Lit Elements, Material Design, and NPM, we developed an efficient and user-friendly app to measure and improve this important aspect of sustainability.
 
 ## Installation
 
