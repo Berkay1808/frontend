@@ -1,0 +1,8 @@
+:root {
+    /* VARIABLES */
+    --kpn-primary: #090;
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    margin: 20px;
+    background-color: var(--kpn-primary);
+}
