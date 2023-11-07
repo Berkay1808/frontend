@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import langClick$ from '../js/language-selector.js';
+import { languageSubject } from '../js/language-selector.js';
 import { Router } from '@vaadin/router';
 import { authenticateUserByEmail } from '../js/main.js';
 
@@ -19,6 +19,21 @@ export class LoginPage extends LitElement {
     this.selectedRole = 'gebruiker';
   }
 
+  langSubscription;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.langSubscription = languageSubject.subscribe(lang => {
+      this.lang = lang;
+      this.requestUpdate(); // Forceer een her-rendering van de component
+    });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.langSubscription.unsubscribe();
+  }
+
   handleLogin() {
     const email = this.email;
     const password = this.password;
@@ -36,7 +51,7 @@ export class LoginPage extends LitElement {
     return html`
       <div class="grid-container">
         <nav class="navigation">
-            <custom-logo redirect_url="/" logo_width="200"></custom-logo>
+          <custom-logo redirect_url="/" logo_width="200"></custom-logo>
         </nav>
         <button class="lang-button" data-lang="nl">Nederlands</button>
         <button class="lang-button" data-lang="en">English</button>
@@ -60,7 +75,7 @@ export class LoginPage extends LitElement {
         gap: 20px;
         text-align: center;
       }
-      
+
       a {
         color: #fff;
         text-decoration: none;

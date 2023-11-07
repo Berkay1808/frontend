@@ -1,10 +1,15 @@
-import { fromEvent } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, fromEvent } from 'rxjs';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 
-const langButtons = document.querySelectorAll('.lang-button');
+export const languageSubject = new BehaviorSubject('nl');
 
-const langClick$ = fromEvent(langButtons, 'click').pipe(
-    map(event => event.target.dataset.lang)
+export const langButtons = document.querySelectorAll('.lang-button');
+
+export const langClick$ = fromEvent(langButtons, 'click').pipe(
+    map(event => event.target.dataset.lang),
+    distinctUntilChanged()
 );
 
-export default langClick$;
+langClick$.subscribe(newLang => {
+    languageSubject.next(newLang);
+});
